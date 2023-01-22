@@ -1,0 +1,13 @@
+selenium
+pyspark
+findspark
+requests
+mysqlclient
+unidecode
+scrapy
+bs4
+undetected-chromedriver
+spacy
+matplotlib
+pandas
+python-dotenv

@@ -1,4 +1,8 @@
 import scrapy
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 from tripadvisor_scraper.items import RestaurantItem
 
 class TripAdvisorSpider(scrapy.Spider):
@@ -10,7 +14,7 @@ class TripAdvisorSpider(scrapy.Spider):
 
     custom_settings = {
         "FEEDS": {
-            "data/restaurants_urls.csv": {"format": "csv", "overwrite": True} #Define export file and options like overwrite 
+            "sentiment-analysis-tripadvisor/data/restaurants_urls.csv": {"format": "csv"} #Define export file and options like overwrite 
         }
     }
 

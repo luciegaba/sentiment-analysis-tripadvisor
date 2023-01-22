@@ -55,7 +55,7 @@ import requests
 
 class ReviewSpider(scrapy.Spider):
     name = "reviews_scraper"
-    custom_settings = {'FEEDS': {'data/fetch_data.json': {'format': 'json', 'overwrite':'True'}}}
+    custom_settings = {'FEEDS': {'sentiment-analysis-tripadvisor/data/fetch_data.json': {'format': 'json', 'overwrite':'True'}}}
 
     def __init__(self, sample_size=1000, *args, **kwargs): #Create an argument for sample size which can be passed in argument of crawler like scrapy crawl reviews -a sample_size=2000
         super().__init__(*args, **kwargs)
@@ -63,7 +63,7 @@ class ReviewSpider(scrapy.Spider):
 
 
     def start_requests(self):
-        fetch_urls = pd.read_csv("data/restaurants_urls.csv")
+        fetch_urls = pd.read_csv("sentiment-analysis-tripadvisor/data/restaurants_urls.csv")
         urls_to_parse = fetch_urls["url"].values.tolist()
         if self.sample_size > len(urls_to_parse) or self.sample_size < 1:
             raise ValueError("Sample size must be between 1 and the number of URLs to parse")

@@ -1,7 +1,6 @@
 
 import re
 from scripts.utils import parse_url
-
 def get_max_page_number(soup):
     results=int(soup.find("span",class_="SgeRJ").findChildren("span","b")[0].text)
     return results

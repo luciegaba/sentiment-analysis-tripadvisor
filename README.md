@@ -20,11 +20,13 @@ Ce projet vise à extraire les données des restaurants de Paris sur Trip Adviso
 
 ## Contenu
 Ce projet comprend :
-- Un dossier contenant des scripts utilisés dans la première partie (scripts), avec des sous-dossiers selon la tache réalisée.
--	Un projet Scrapy utilisé dans les deux parties. (tripadvisor_scrapy).
--	Un projet Airflow
--	Plusieurs notebooks retraçant les étapes réalisées au cours du projet (pour partie EDA ci-dessous)
--	Une application Streamlit pour exposer les résultats de l'analyse.
+- Un dossier contenant des scripts utilisés dans la première partie (scripts), avec des sous-dossiers selon la tache réalisée:
+    * preprocessor: Preprocessing avec Spark
+    * scraper: Fonctions de webscraping + projet Scrapy( plus adapté pour notre projet)
+    * viz: Fonctions pour faire des graphes pour l'analyse exploratoire
+- Un dossier comportant les notebooks: numérotés dans l'ordre d'exécution (webscraping => processing => eda)
+- Un projet Airflow
+- Une application Streamlit pour exposer les résultats de l'analyse.
 
 Dans un premier temps, nous effectuons une partie tournée exploration des données tandis que dans un second temps nous souhaitons privilégier la capacité de déploiement de ce projet.
 
@@ -40,15 +42,26 @@ Dans un premier temps, nous effectuons une partie tournée exploration des donn�
 
 ## Installation
 Pour utiliser ce projet, vous devez clone ce repository en local et installer les requirements.
+Pour le notebook de processing vous avez deux alternatives: 
+- Lancer depuis googlecolab ou en local en veillant à installer les élements suivants:
+conda..
+python  3.9
+
 
 ### Data
-Vous obtiendrez les données en exécutant le notebook webscraping.ipynb ou en lançant scrapy directement avec la commande
+
+- Extraction des données: depuis le notebook webscraping ou en lançant la CL:
+```
+cd "scripts/scraper/scrapy_tripadvisor_scraper/tripadvisor_scraper"
+scrapy crawl restaurants_urls_scraper
+scrapy crawl reviews_scraper
+```
 Les données seront situées dans le dossier data à la racine du projet.
 
+- Nettoyage des données: depuis le notebook processing () ou bien lancer le script global_processor...
 ### Notebooks
 -	Pour les notebooks, il vous suffit de les exécuter simplement. Remarque : le notebook qui concerne le preprocessing ne peut être exécuté exclusivement sur Google Colab pour l'instant (car utilisation de Pyspark).
--	Il faudra vous assurer d'avoir le fichier data.json pour que les notebooks de processing et de eda fonctionnent.
--	Si vous disposez des données brutes, vous pourrez utiliser la pipeline de préprocessing disponible dans scripts/preprocessor.
+-	Il faudra vous assurer d'avoir le fichier fetch_data.json et clean_data.json pour que les notebooks de processing et d'eda fonctionnent (respectivement).
 
 ### Dev
 Bientôt disponible.

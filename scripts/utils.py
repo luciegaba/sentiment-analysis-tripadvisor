@@ -1,57 +1,42 @@
 import time
 import re
 from selenium import webdriver # import webdriver from selenium package
-from random import randint
 from bs4 import BeautifulSoup
-
-def get_driver_options() -> webdriver.ChromeOptions:
-    """
-    Returns a ChromeOptions object with various configurations set.
-    These configurations are intended to prevent the browser from being detected as a web scraper.
-    """
-    configs = [
-        "--disable-extensions",
-        "--disable-dev-shm-usage",
-        "--no-sandbox",
-        "--headless",
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36",
-        "--incognito"
-    ]
-    options = webdriver.ChromeOptions()
-    for argument in configs:
-        options.add_argument(argument)
-    return options
+import random
+import undetected_chromedriver as uc
 
 
 def parse_url(url: str) -> BeautifulSoup:
     """
-    Opens a headless browser and loads the given url.
+    Opens browser and loads the given url.
     Returns a BeautifulSoup object representing the page's source code.
     """
-    driver = webdriver.Chrome(options= get_driver_options())
+
+    options = webdriver.ChromeOptions()
+    driver = uc.Chrome( options=options)
     driver.get(url)
-    soup = None
-    while soup is None:
-        try:
-            time.sleep(randint(5, 7))
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            driver.close()
-        except:
-            print("An error occured, retrying in 5 seconds")
-            time.sleep(5)
+    time.sleep(random.randint(8,15))
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    driver.close()
     return soup
 
 
-def get_digits(string_to_digit: str) -> int:
+def get_digits(string_to_digit: str,float_option=True):
     """
     Given a string, returns the first set of consecutive digits found as an int.
     If no digits are found, returns None.
     """
+
     if string_to_digit:
+        if float_option == True:
+            try:
+                digit = float("".join(re.findall(r'[+-]?\d*\.\d+|\d+', string_to_digit)))
+            except:
+                digit = 0.0
         try:
             digit = int("".join(re.findall(r'\d+', string_to_digit)))
         except:
-            digit = None
+            digit = 0
         return digit
 
 

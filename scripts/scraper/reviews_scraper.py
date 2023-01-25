@@ -2,7 +2,7 @@
 import urllib.request
 import requests
 import re
-from utils import parse_url
+from scripts.utils import parse_url
 
 def scrap_comments(main_url):
     reviews_customers_pages=[]

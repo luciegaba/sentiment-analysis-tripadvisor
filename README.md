@@ -28,6 +28,9 @@ Ce projet comprend :
 - Une application Streamlit pour exposer les résultats de l'analyse
 - Les artefacts ML pour l'app/prédiction
 
+Normalement les notebooks sont complets, sinon les scripts des fonctions associées sont plutôt bien faits pour comprendre les actions réalisées.
+
+
 Dans un premier temps, nous effectuons une partie tournée "exploration des données" tandis que dans un second temps nous souhaitons privilégier la capacité de déploiement de ce projet.
 
 ### EDA
@@ -76,6 +79,18 @@ ProcessingPipeline("data/fetch_data.json").run_pipeline()
 ### Dev
 Bientôt disponible. Le but était de faire un projet sur Aiflow en le connectant à une base SQL. Les prémices de ce travail sont disponibles dans dev mais n'ont pas pu été achevé!
 
+### App
+Some previews of the app:
+
+![alt tag](https://github.com/luciegaba/sentiment-analysis-tripadvisor/blob/project_submission_french/visuals/Capture%20d%E2%80%99%C3%A9cran%202023-01-29%20%C3%A0%2017.03.38.png)
+
+![alt tag](https://github.com/luciegaba/sentiment-analysis-tripadvisor/blob/project_submission_french/visuals/Capture%20d%E2%80%99%C3%A9cran%202023-01-29%20%C3%A0%2017.04.00.png)
+
+
+Il faut se positionner à la racine du projet et lancer:
+```
+streamlit run main/app.py
+```
 
 ## Contact
 * [Lucie Gabagnou👸](https://github.com/luciegaba) - Lucie.Gabagnou@etu.univ-paris1.fr

@@ -16,6 +16,7 @@ from text_components import (
     sentiment_analysis_speech,
     polarity_speech,
     polarity_interpretation_speech,
+    model_interpretation_speech
 )
 from scripts.ml.features import reviews_cleaner, polarity
 from scripts.ml.model import predict,vectorizer_by_tfidf
@@ -94,16 +95,8 @@ def sentiment_analysis(data, project_path):
         with open(f"{project_path}/artefacts/results_{vectorizer}.pkl", "rb") as f:
             results = pickle.load(f)
         st.plotly_chart(plot_model_performance(results))
-
-        with open(f"{project_path}/artefacts/svm.pkl", "rb") as f:
-            model = pickle.load(f)
-        with open(f"{project_path}/artefacts/tfidf.pkl", "rb") as f:
-            tfidf = pickle.load(f)
-        st.dataframe(sentiment_data["clean_reviews"])
-        preds=predict(model,tfidf,sentiment_data)
-        st.dataframe(preds)
-        st.dataframe(pd.concat([sentiment_data["clean_reviews","ratings"],preds],axis=1))
         st.balloons()
+        model_interpretation_speech()
 
 
 def analysis_part(data, st, options, project_path):

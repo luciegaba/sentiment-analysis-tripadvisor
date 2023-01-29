@@ -2,8 +2,6 @@ selenium
 pyspark
 findspark
 requests
-mysqlclient
-unidecode
 scrapy
 bs4
 undetected-chromedriver
@@ -16,3 +14,6 @@ scikit-learn
 wordcloud
 textblob
 geopy
+streamlit 
+streamlit_folium
+gensim

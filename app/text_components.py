@@ -52,7 +52,11 @@ Here, we see that the majority of ratings have sentiment scores centered around 
 
 
 def model_interpretation_speech():
-    st.markdown("")
+    st.markdown(
+        """
+        <p>Among the different models tested (whether on a text embedded by TFIDF or Doc2Vec), everything seems to indicate that the SVM is a relevant model with an accuracy of 0.7. In addition, the confusion matrices also reveal that the model classifies well. It's worth mentioning that the goal of this sentiment analysis was to accurately understand the emotions of the users, rather than simply providing a rating. What do you think?</p>
+        """,
+        unsafe_allow_html=True)
 # TAB3
 def foreword_analysis_speech():
     st.title("How we reach these results?")

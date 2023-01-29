@@ -28,7 +28,7 @@ Ce projet comprend :
 - Une application Streamlit pour exposer les résultats de l'analyse
 - Les artefacts ML pour l'app/prédiction
 
-Normalement les notebooks sont complets, sinon les scripts des fonctions associées sont plutôt bien faits pour comprendre les actions réalisées.
+Normalement les notebooks sont complets, sinon les scripts des fonctions associées sont plutôt bien faits pour comprendre les actions réalisées (en anglais)
 
 
 Dans un premier temps, nous effectuons une partie tournée "exploration des données" tandis que dans un second temps nous souhaitons privilégier la capacité de déploiement de ce projet.
@@ -49,7 +49,7 @@ Pour utiliser ce projet, vous devez clone ce repository en local et installer le
 git clone https://github.com/luciegaba/sentiment-analysis-tripadvisor
 conda create -n tripadvisor python=3.9
 conda install pip # Si ce n'est pas le cas
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 Pour le notebook de processing vous avez deux alternatives: 
 - Lancer depuis googlecolab ou en local en veillant à installer les élements suivants:

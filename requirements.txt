@@ -11,3 +11,8 @@ spacy
 matplotlib
 pandas
 python-dotenv
+plotly
+scikit-learn
+wordcloud
+textblob
+geopy

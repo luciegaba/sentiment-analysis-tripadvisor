@@ -2,14 +2,14 @@ import pandas as pd
 from six.moves.urllib.parse import urljoin
 
 from tripadvisor_scraper.items import ReviewtItem
-from tripadvisor_scraper.settings import 
+from tripadvisor_scraper.settings import DATA_PATH
 import scrapy
 import random
 
 
 class ReviewSpider(scrapy.Spider):
     name = "reviews_scraper"
-    custom_settings = {'FEEDS': {f"{DATA_PATH}/fetch_data.json': {'format': 'json'}}}
+    custom_settings = {'FEEDS': {f"{DATA_PATH}/fetch_data.json": {'format': 'json'}}}
 
     def __init__(self, sample_size=1000, *args, **kwargs): #Create an argument for sample size which can be passed in argument of crawler like scrapy crawl reviews -a sample_size=2000
         super().__init__(*args, **kwargs)
@@ -17,7 +17,7 @@ class ReviewSpider(scrapy.Spider):
 
 
     def start_requests(self):
-        fetch_urls = pd.read_csv("f"{DATA_PATH}//restaurants_urls.csv")
+        fetch_urls = pd.read_csv(f"{DATA_PATH}//restaurants_urls.csv")
         urls_to_parse = fetch_urls["url"].values.tolist()
         if self.sample_size > len(urls_to_parse) or self.sample_size < 1:
             raise ValueError("Sample size must be between 1 and the number of URLs to parse")
@@ -67,6 +67,6 @@ class ReviewSpider(scrapy.Spider):
 
     def _get_reviews(self, response):
         """Extract the 10 first reviews of the restaurant from the response"""
-        return [title+":"+body for title,body in zip(response.css("span.noQuotes::text").getall(),response.css("p.partial_entry::text").getall())]
+        return [title+":"+body+f"({rating})" for title,body,rating in zip(response.css("span.noQuotes::text").getall(),response.css("p.partial_entry::text").getall(),response.css(".is-9 span.ui_bubble_rating").getall())]
 
 

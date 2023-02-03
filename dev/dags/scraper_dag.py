@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from random import randint
 from sentiment_analysis_tripadvisor.scripts.scraper.scrapy_tripadvisor_scraper.tripadvisor_scraper.spiders.restaurants_urls_scraper import TripAdvisorSpider
 from sentiment_analysis_tripadvisor.scripts.scraper.scrapy_tripadvisor_scraper.tripadvisor_scraper.spiders.reviews_scraper import ReviewSpider
-
+from sentiment_analysis_tripadvisor.scripts.preprocessor.global_processor import ProcessingPipeline
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from _scproxy import _get_proxy_settings
@@ -24,16 +24,24 @@ default_args = {
     'start_date': datetime(2022, 1, 1),
     'depends_on_past': False,
     'retries': 1,
+    'email': ['lgabagnou@gmail.com'],
+    'email_on_failure': False,
     'retry_delay': timedelta(minutes=5),
 }
 
-def scrape_and_save_task():
+
+
+def scraping_task(id="city"):
+    table_json=f"{os.path.dirname(os.path.dirname(os.getcwd()))}+/data/{id}.json"
     spider = TripAdvisorSpider()
     crawler = scrapy.CrawlerProcess()
     crawler.crawl(spider)
     crawler.start()
     df = pd.DataFrame(spider.results)
-
+    df.to_json(table_json)
+def processing_task(table_json):
+    ProcessingPipeline(table_json).run_pipeline()
+def loading_task():
 
 
 

@@ -25,7 +25,7 @@ Ce projet comprend :
     * scraper: Fonctions de webscraping + projet Scrapy( plus adapté pour notre projet)
     * viz: Fonctions pour faire des graphes pour l'analyse exploratoire
 - Un dossier comportant les notebooks: numérotés dans l'ordre d'exécution (webscraping => processing => eda)
-- Une application Streamlit pour exposer les résultats de l'analyse
+- Une application Streamlit pour exposer les résultats de l'analyse (https://luciegaba-sentiment-analysis-tripadvisor-appmain-njj9d8.streamlit.app/)
 - Les artefacts ML pour l'app/prédiction
 
 Normalement les notebooks sont complets, sinon les scripts des fonctions associées sont plutôt bien faits pour comprendre les actions réalisées (en anglais)
